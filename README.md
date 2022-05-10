@@ -3,3 +3,9 @@
 ### opencv
 1. git clone 을 사용해 프로젝트 다운  
 https://github.com/opencv/opencv/tree/master/data/haarcascades
+
+### finger
+
+### RFID
+
+### streaming
