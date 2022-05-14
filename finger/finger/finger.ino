@@ -3,9 +3,9 @@
 Servo servo;      //Servo 클래스로 servo객체 생성
 
 //핀 정의
-int touchSensor = 8;  // 터치센서 핀 설정
-int ledPin = 9;
-int buzzerPin = 11;
+int red = 9;
+int green = 10;
+int blue = 11;
 int servoPin = 7; //0도에 열고 180도에 닫고
 //서보 모터 각도 조절을 위한 변수
 bool flag = false;
@@ -18,7 +18,6 @@ void setup()
 {
   servo.attach(servoPin);  
   servo.write(180);   
-  pinMode(touchSensor, INPUT);
   Serial.begin(9600);
   while (!Serial);  // For Yun/Leo/Micro/Zero/...
   delay(100);
@@ -129,12 +128,10 @@ int getFingerprintIDez() {
 
   p = finger.fingerFastSearch();
   if (p != FINGERPRINT_OK) {
-    Serial.println("Denied");
-    tone(buzzerPin, 261.63, 500);
+    Serial.println("Not Admin");
     flag = false;
-    digitalWrite(ledPin, HIGH);
+    digitalWrite(red, HIGH);
     delay(500);
-    digitalWrite(ledPin, LOW);
     servo.write(179);
     return -1;
   }
@@ -143,11 +140,15 @@ int getFingerprintIDez() {
   Serial.print("Found ID #"); Serial.print(finger.fingerID); 
   Serial.print(" with confidence of "); Serial.println(finger.confidence);
    if(finger.confidence >= 100){
-    Serial.println("문이 열립니다.");
+    Serial.println("Hi Admin");
     flag=true;
+    digitalWrite(green, HIGH);
+    delay(500);
    }
   else{
-    Serial.println("retouch");  
+    Serial.println("retouch");
+    digitalWrite(red, HIGH);
+    delay(500);  
   }
   return finger.fingerID; 
 }
