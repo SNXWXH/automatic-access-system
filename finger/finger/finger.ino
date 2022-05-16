@@ -5,8 +5,8 @@
 Servo servo;      //Servo 클래스로 servo객체 생성
 
 //핀 정의
-int red = 9;
-int green = 10;
+int red = 10;
+int green = 9;
 int blue = 11;
 int servoPin = 7; //0도에 열고 180도에 닫고
 //서보 모터 각도 조절을 위한 변수
@@ -135,19 +135,21 @@ int getFingerprintIDez() {
   }
 
   p = finger.fingerFastSearch();
-  if (p != FINGERPRINT_OK) {
+  if (finger.confidence < 100) {
     Serial.println("Not Admin");
+    Serial.println(finger.confidence);
     lcd.print("Not Admin");
     delay(500);
     lcd.clear();
     digitalWrite(red, HIGH);
     delay(500);
     digitalWrite(red, LOW);
-    return -1;
+    return 0;
   }
 
   if(finger.confidence >= 100){
     Serial.println("Hi Admin");
+    Serial.println(finger.confidence);
     lcd.print("Hi Admin");
     delay(500);
     lcd.clear();
