@@ -11,7 +11,7 @@ int blue = 11;
 int servoPin = 7; //0도에 열고 180도에 닫고
 //서보 모터 각도 조절을 위한 변수
 bool flag = false;
-LiquidCrystal_I2C lcd(0x3F, 16, 2);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 SoftwareSerial mySerial(2, 3);
 
@@ -51,11 +51,6 @@ void loop()                     // run over and over again
   if(flag) {
     servo.write(1); 
     delay(1000);
-  }
-  if(finger.fingerID != 1 && finger.fingerID != 2) {
-    digitalWrite(red, HIGH);
-    delay(500);
-    digitalWrite(red, LOW);
   }
 }
 
@@ -143,26 +138,30 @@ int getFingerprintIDez() {
   if (p != FINGERPRINT_OK) {
     Serial.println("Not Admin");
     lcd.print("Not Admin");
-    flag = false;
-    servo.write(179);
-    return -1;
+    delay(500);
+    lcd.clear();
     digitalWrite(red, HIGH);
     delay(500);
     digitalWrite(red, LOW);
+    return -1;
   }
 
   if(finger.confidence >= 100){
     Serial.println("Hi Admin");
     lcd.print("Hi Admin");
+    delay(500);
+    lcd.clear();
     digitalWrite(green, HIGH);
     delay(500);
     digitalWrite(green, LOW);
     flag=true;
    }
   else{
-    Serial.println("retouch"); 
+    Serial.println("retouch");
+    servo.write(1); 
   }
   return finger.fingerID;
+
   
   // found a match!
   Serial.print("Found ID #"); Serial.print(finger.fingerID); 
