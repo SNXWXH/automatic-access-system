@@ -1,31 +1,36 @@
- #include <Adafruit_Fingerprint.h>
+#include <Adafruit_Fingerprint.h>
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 #include<Servo.h> //Servo 라이브러리를 추가
-Servo servo;      //Servo 클래스로 servo객체 생성
+Servo servo1;      //Servo 클래스로 servo객체 생성
+Servo servo2;      //Servo 클래스로 servo객체 생성
 
 //핀 정의
-int red = 10;
-int green = 9;
-int blue = 11;
-int servoPin = 7; //0도에 열고 180도에 닫고
+int red = 5;
+int green = 4;
+int blue = 6;
+int servoPin1 = 7;
+int servoPin2 = 8;
 //서보 모터 각도 조절을 위한 변수
 bool flag = true;
+
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 SoftwareSerial mySerial(2, 3);
 
 Adafruit_Fingerprint finger = Adafruit_Fingerprint(&mySerial);
 
-void setup()  
+void setup()
 {
   pinMode(red, OUTPUT);
   pinMode(green, OUTPUT);
   pinMode(blue, OUTPUT);
   lcd.init();
   lcd.backlight();
-  servo.attach(servoPin);    
+  servo1.attach(servoPin1);
+  servo2.attach(servoPin2);
   Serial.begin(9600);
+
   while (!Serial);  // For Yun/Leo/Micro/Zero/...
   delay(100);
   Serial.println("\n\nAdafruit finger detect test");
@@ -36,7 +41,9 @@ void setup()
     Serial.println("Found fingerprint sensor!");
   } else {
     Serial.println("Did not find fingerprint sensor :(");
-    while (1) { delay(1); }
+    while (1) {
+      delay(1);
+    }
   }
 
   finger.getTemplateCount();
@@ -46,9 +53,8 @@ void setup()
 
 
 void loop()                     // run over and over again
-{  
+{
   getFingerprintIDez();
-
 }
 
 uint8_t getFingerprintID() {
@@ -94,7 +100,7 @@ uint8_t getFingerprintID() {
       Serial.println("Unknown error");
       return p;
   }
-  
+
   // OK converted!
   p = finger.fingerFastSearch();
   if (p == FINGERPRINT_OK) {
@@ -108,11 +114,11 @@ uint8_t getFingerprintID() {
   } else {
     Serial.println("Unknown error");
     return p;
-  }   
-  
+  }
+
   // found a match!
-  Serial.print("Found ID #"); Serial.print(finger.fingerID); 
-  Serial.print(" with confidence of "); Serial.println(finger.confidence); 
+  Serial.print("Found ID #"); Serial.print(finger.fingerID);
+  Serial.print(" with confidence of "); Serial.println(finger.confidence);
 
   return finger.fingerID;
 }
@@ -135,8 +141,9 @@ int getFingerprintIDez() {
   if (finger.confidence < 100) {
     Serial.println("Not Admin");
     Serial.println(finger.confidence);
+    lcd.clear();
     lcd.print("Not Admin");
-    delay(500);
+    delay(3000);
     lcd.clear();
     digitalWrite(red, HIGH);
     delay(500);
@@ -144,28 +151,31 @@ int getFingerprintIDez() {
     return 0;
   }
 
-  if(finger.confidence >= 100){
+  if (finger.confidence >= 100) {
     Serial.println("Hi Admin");
     Serial.println(finger.confidence);
+    lcd.clear();
     lcd.print("Hi Admin");
-    delay(500);
+    delay(3000);
     lcd.clear();
     digitalWrite(green, HIGH);
     delay(500);
     digitalWrite(green, LOW);
-    if(flag) {
-      servo.write(90); 
+    if (flag) {
+      servo1.write(90);
+      servo2.write(90);
       delay(3000);
-      servo.write(0);
+      servo1.write(0);
+      servo2.write(0);
+    }
   }
-   }
-  else{
-    Serial.println("retouch"); 
+  else {
+    Serial.println("retouch");
   }
   return finger.fingerID;
 
-  
+
   // found a match!
-  Serial.print("Found ID #"); Serial.print(finger.fingerID); 
+  Serial.print("Found ID #"); Serial.print(finger.fingerID);
   Serial.print(" with confidence of "); Serial.println(finger.confidence);
 }
