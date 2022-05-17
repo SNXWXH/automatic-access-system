@@ -7,6 +7,8 @@
 MFRC522 rfid(SS_PIN, RST_PIN);  //클래스 객체 선언
 
 LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+//RGB 핀 선언
 int red = 4;
 int green = 5;
 int blue = 6;
@@ -16,7 +18,6 @@ void setup(){
   SPI.begin();      //SPI 통신 시작
   rfid.PCD_Init();  //RFID 초기화
 
-
   lcd.init();
   lcd.backlight();
   
@@ -24,8 +25,7 @@ void setup(){
   Serial.println();
   lcd.setCursor(0, 0);
   lcd.print("card");
-  delay(1000);
-  lcd.clear();
+  delay(5000);
 
   pinMode(red, OUTPUT);
   pinMode(green, OUTPUT);
@@ -54,31 +54,45 @@ void loop() {
     //UID값이 지정해 둔 값과 같으면 출입 가능
     if(content.substring(1) == "21 CE 50 D3") //key1
     {
+      same();
+    }
+    
+    //UID값이 다르면 출입금지
+    else
+    {
+      notsame();
+    }
+}
+
+
+//출입가능 함수 선언
+void same(){
       digitalWrite(red, HIGH);   // 빨간색 LED ON
       delay(500);
       digitalWrite(red, LOW);    // 빨간색 LED OFF
       delay(500);
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.println("Hi Admin");
+      delay(3000);
+      lcd.clear();
       Serial.println("출입자명: MJC");
       Serial.println("Message: 출입 가능");
       Serial.println();
-      lcd.setCursor(0, 0);
-      lcd.println("Hi Admin");
-      delay(1000);
-      lcd.clear();
-    }
-    //UID값이 다르면 출입금지
-    else
-    {
+}
+
+//출입불가능 함수 선언
+void notsame() {
       digitalWrite(green, HIGH); // 초록색 LED ON
       delay(500);
       digitalWrite(green, LOW);  // 초록색 LED OFF
       delay(500);
+      lcd.clear();
+      lcd.setCursor(0, 0);
+      lcd.print("Not Admin");
+      delay(3000);
+      lcd.clear();
       Serial.println("해당 출입자가 아닙니다");
       Serial.println("Message: 출입 금지");
       Serial.println();
-      lcd.setCursor(0, 0);
-      lcd.print("Not Admin");
-      delay(1000);
-      lcd.clear();
-    }
 }
