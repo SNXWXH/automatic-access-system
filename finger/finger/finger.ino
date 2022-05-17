@@ -1,4 +1,4 @@
-#include <Adafruit_Fingerprint.h>
+ #include <Adafruit_Fingerprint.h>
 #include <LiquidCrystal_I2C.h>
 #include <Wire.h>
 #include<Servo.h> //Servo 라이브러리를 추가
@@ -10,7 +10,7 @@ int green = 9;
 int blue = 11;
 int servoPin = 7; //0도에 열고 180도에 닫고
 //서보 모터 각도 조절을 위한 변수
-bool flag = false;
+bool flag = true;
 LiquidCrystal_I2C lcd(0x27, 16, 2);
 
 SoftwareSerial mySerial(2, 3);
@@ -24,8 +24,7 @@ void setup()
   pinMode(blue, OUTPUT);
   lcd.init();
   lcd.backlight();
-  servo.attach(servoPin);  
-  servo.write(180);   
+  servo.attach(servoPin);    
   Serial.begin(9600);
   while (!Serial);  // For Yun/Leo/Micro/Zero/...
   delay(100);
@@ -45,13 +44,11 @@ void setup()
   Serial.println("Waiting for valid finger...");
 }
 
+
 void loop()                     // run over and over again
 {  
   getFingerprintIDez();
-  if(flag) {
-    servo.write(1); 
-    delay(1000);
-  }
+
 }
 
 uint8_t getFingerprintID() {
@@ -156,11 +153,14 @@ int getFingerprintIDez() {
     digitalWrite(green, HIGH);
     delay(500);
     digitalWrite(green, LOW);
-    flag=true;
+    if(flag) {
+      servo.write(90); 
+      delay(3000);
+      servo.write(0);
+  }
    }
   else{
-    Serial.println("retouch");
-    servo.write(1); 
+    Serial.println("retouch"); 
   }
   return finger.fingerID;
 
