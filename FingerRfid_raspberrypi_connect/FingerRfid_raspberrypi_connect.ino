@@ -149,7 +149,7 @@ int getFingerprintIDez() {
 
 void printID() {
   if (finger.fingerID == 1) {
-    Serial.println("K_EUNJIN2013");
+    Serial.println("k_eunjin2013");
     delay(5000);
     }
   else if (finger.fingerID == 2) {
@@ -161,8 +161,11 @@ void printID() {
     delay(5000);
     }
   else if (finger.fingerID == 4) {
-    Serial.println("17__APR");
+    Serial.println("17__apr");
     delay(5000);
     }
+  else {
+    Serial.println("NOT ADMIN");
+  }
   return finger.fingerID;
 }
