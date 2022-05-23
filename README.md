@@ -5,9 +5,10 @@
 https://github.com/opencv/opencv/tree/master/data/haarcascades
 
 ### finger
-
+1. Adafruit Fingerprint Sensor 라이브러리 다운
 
 ### RFID
+1. MFRC522 라이브러리 다운
 
 ### streaming
 
