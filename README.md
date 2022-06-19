@@ -10,8 +10,6 @@ https://github.com/opencv/opencv/tree/master/data/haarcascades
 ### RFID
 1. MFRC522 라이브러리 다운
 
-### streaming
-
 ### face_recognition
 1. github에서 face_recognition 프로젝트 파일 내려받기   
 https://github.com/ageitgey/face_recognition
@@ -33,3 +31,11 @@ admin2_capture.py
 4. 얼굴 인식 API 가져오기   
 face_api.py   
    
+### Serial Communication between Python and Arduino
+
+
+
+### submoter
+
+
+
