@@ -1,10 +1,19 @@
 # 파이 카메라를 통한 자동 출입 시스템
 
-### opencv
+### OpenCV
 1. git clone 을 사용해 프로젝트 다운  
-https://github.com/opencv/opencv/tree/master/data/haarcascades
+[OpenCV](https://github.com/opencv/opencv)
 
-### finger
+2. OpenCV 설치
+
+```
+python -m pip install opencv-python
+python -m pip install opencv-contrib-python
+python -m pip install opencv-python-headless
+python -m pip install opencv-contrib-python-headless
+```
+
+### Finger
 1. Adafruit Fingerprint Sensor 라이브러리 다운
 
 ### RFID
@@ -30,12 +39,21 @@ admin2_capture.py
    
 4. 얼굴 인식 API 가져오기   
 face_api.py   
-   
+
+### Face Recogiontion
+1. 사진 데이터 모으기
+2. 학습
+3. 인식
+
 ### Serial Communication between Python and Arduino
+* pySerial 사용
+```
+pip install pyserial
+```
 
 
-
-### submoter
-
+### Submoter
+* 서보모터 SG-90 떨림 문제 해결 위해 pigpio 라이브러리 설치
+[pigpio](http://abyz.me.uk/rpi/pigpio/index.html)
 
 
