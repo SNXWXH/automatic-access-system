@@ -16,8 +16,10 @@
 ## 사용 기술
 ### OpenCV
 1. git clone 을 사용해 프로젝트 다운  
-[OpenCV github link](https://github.com/opencv/opencv)
-
+* [OpenCV github link](https://github.com/opencv/opencv)
+```
+git clone https://github.com/opencv/opencv.git
+```
 2. OpenCV 설치
 
 ```
