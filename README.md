@@ -1,8 +1,22 @@
 # 파이 카메라를 통한 자동 출입 시스템
+## 프로젝트 소개
+* Open CV를 이용한 딥러닝 모델 개발을 활용해 관리자 접근 허용
+* 아두이노 우노와 라즈베리 파이 간의 시리얼 통신
+* 아두이노 우노와 연결된 지문인식센서를 통해 관리자 접근 허용
+* 아두이노 우노와 연결된 RFID 센서를 통해 관리자를 제외한 일반 사용자의 접근 허용
+* 접근이 허용될 경우 LED 점등 및 LCD 문구 출력, 서보모터를 통해 출입문 열림
+* 관리자와 일반 사용자의 접근 경로를 달리해 보안 강화
 
+### 개발 환경
+* Arduion IDE
+* Python 3.7.9
+* Raspberry pi 4
+ 
+
+## 사용 기술
 ### OpenCV
 1. git clone 을 사용해 프로젝트 다운  
-[OpenCV](https://github.com/opencv/opencv)
+[OpenCV github link](https://github.com/opencv/opencv)
 
 2. OpenCV 설치
 
@@ -12,6 +26,22 @@ python -m pip install opencv-contrib-python
 python -m pip install opencv-python-headless
 python -m pip install opencv-contrib-python-headless
 ```
+### Face Recogiontion
+1. 사진 데이터 모으기
+* face_dataset.py 
+* 원하는 경로 파일에 사진 찍어 저장
+2. 학습
+* face_training.py
+```
+pip install pillow
+```
+* 해당 경로 사진 학습 후 모델 yml 파일로 저장
+
+3. 인식
+* face_recognition_module.py
+* yml 파일 불러와 얼굴 인식
+
+
 
 ### Finger
 1. Adafruit Fingerprint Sensor 라이브러리 다운
@@ -40,10 +70,7 @@ admin2_capture.py
 4. 얼굴 인식 API 가져오기   
 face_api.py   
 
-### Face Recogiontion
-1. 사진 데이터 모으기
-2. 학습
-3. 인식
+
 
 ### Serial Communication between Python and Arduino
 * pySerial 사용
@@ -54,6 +81,7 @@ pip install pyserial
 
 ### Submoter
 * 서보모터 SG-90 떨림 문제 해결 위해 pigpio 라이브러리 설치
-[pigpio](http://abyz.me.uk/rpi/pigpio/index.html)
+* [pigpio 라이브러리](http://abyz.me.uk/rpi/pigpio/index.html)
 
+## 완성 모습
 
