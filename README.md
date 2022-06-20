@@ -1,4 +1,7 @@
 # 파이 카메라를 통한 자동 출입 시스템
+
+## **최종버전 : fianlVersionCode**
+
 ## 프로젝트 소개
 * Open CV를 이용한 딥러닝 모델 개발을 활용해 관리자 접근 허용
 * 아두이노 우노와 라즈베리 파이 간의 시리얼 통신
@@ -11,6 +14,9 @@
 * Arduion IDE
 * Python 3.7.9
 * Raspberry pi 4
+
+### 프로젝트 기간
+* 2022.04.27~2022.06.21
 
 ## 사용 기술
 ### picamera
@@ -53,31 +59,11 @@ pip install pillow
 * yml 파일 불러와 얼굴 인식
 
 ### Finger
-1. Adafruit Fingerprint Sensor 라이브러리 다운
+* Adafruit Fingerprint Sensor 라이브러리 다운
 
 ### RFID
-1. MFRC522 라이브러리 다운
+* MFRC522 라이브러리 다운
 
-### face_recognition
-1. github에서 face_recognition 프로젝트 파일 내려받기   
-https://github.com/ageitgey/face_recognition
-
-2. 라즈베리파이 서버에서 cmake, face_recognition 라이브러리 설치   
-pip install cmake (cmake 모듈 설치)   
-pip install face_recognition (face_recognition 모듈 설치)   
-해당 과정에서 numpy와 dlib 모듈이 설치됨   
-   
-머신러닝 및 영상처리 관련 라이브러리 설치   
-pip install --upgrade scikit-learn   
-pip install OpenCV-Python   
-
-
-3. 관리자 얼굴 촬영   
-admin1_capture.py   
-admin2_capture.py   
-  
-4. 얼굴 인식 API 가져오기   
-face_api.py   
 
 ### Serial Communication between Python and Arduino
 * pySerial 사용
