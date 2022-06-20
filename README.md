@@ -85,6 +85,7 @@ sudo make install
 ## 완성 모습
 ![KakaoTalk_20220620_212119486_03](https://user-images.githubusercontent.com/103805632/174601335-a046fee7-cd36-4a2a-b814-fc9de41bcb0e.jpg)
 ![KakaoTalk_20220620_212133025](https://user-images.githubusercontent.com/103805632/174601346-585e5ead-6e86-4678-824f-e95e0765e6ed.jpg)
+
 ### 딥러닝 실행영상
 https://user-images.githubusercontent.com/103805632/174602033-7260459b-7644-497a-aecb-684afbb24daa.mp4
 ### 지문인식 실행영상
