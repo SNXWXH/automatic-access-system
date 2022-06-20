@@ -84,5 +84,4 @@ sudo make install
 
 ## 완성 모습
 ![KakaoTalk_20220620_212119486_03](https://user-images.githubusercontent.com/103805632/174601335-a046fee7-cd36-4a2a-b814-fc9de41bcb0e.jpg)
-![KakaoTalk_20220620_212119486_04](https://user-images.githubusercontent.com/103805632/174601344-4739c4fc-9598-41e9-8f96-feefbd20b9a6.jpg)
 ![KakaoTalk_20220620_212133025](https://user-images.githubusercontent.com/103805632/174601346-585e5ead-6e86-4678-824f-e95e0765e6ed.jpg)
